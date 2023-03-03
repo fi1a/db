@@ -7,7 +7,7 @@ namespace Fi1a\DB\Queries;
 /**
  * Удаление таблицы
  */
-interface DropTableInterface extends ActionInterface, NameActionInterface
+interface DropTableInterface extends ActionInterface, TableNameActionInterface
 {
     /**
      * Удалить если существует

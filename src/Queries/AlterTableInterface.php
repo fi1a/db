@@ -7,7 +7,7 @@ namespace Fi1a\DB\Queries;
 /**
  * Изменение таблицы
  */
-interface AlterTableInterface extends ActionInterface, NameActionInterface
+interface AlterTableInterface extends ActionInterface, TableNameActionInterface
 {
     /**
      * Удаляет колонку

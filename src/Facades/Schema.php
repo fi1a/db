@@ -9,17 +9,17 @@ use Fi1a\DB\Queries\AlterTableInterface;
 use Fi1a\DB\Queries\CreateTableInterface;
 use Fi1a\DB\Queries\DropIndexInterface;
 use Fi1a\DB\Queries\DropTableInterface;
+use Fi1a\DB\Queries\SchemaInterface;
 use Fi1a\Facade\AbstractFacade;
-use stdClass;
 
 /**
  * Запросы изменяющие структуру таблицы
  *
- * @method AlterTableInterface alter()
- * @method CreateTableInterface create()
- * @method DropTableInterface drop()
- * @method AddIndexInterface addIndex()
- * @method DropIndexInterface dropIndex()
+ * @method static AlterTableInterface alter()
+ * @method static CreateTableInterface create()
+ * @method static DropTableInterface drop()
+ * @method static AddIndexInterface addIndex()
+ * @method static DropIndexInterface dropIndex()
  */
 class Schema extends AbstractFacade
 {
@@ -28,6 +28,6 @@ class Schema extends AbstractFacade
      */
     protected static function factory(): object
     {
-        return new stdClass();
+        return di()->get(SchemaInterface::class);
     }
 }

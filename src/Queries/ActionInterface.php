@@ -10,6 +10,11 @@ namespace Fi1a\DB\Queries;
 interface ActionInterface
 {
     /**
+     * Тип запроса
+     */
+    public function getType(): string;
+
+    /**
      * Возвращает структуру запроса
      *
      * @return array<string, mixed>
