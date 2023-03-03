@@ -19,7 +19,7 @@ interface ColumnInterface
      *
      * @return $this
      */
-    public function name(string $column);
+    public function name(string $columnName);
 
     /**
      * Увеличение идентификатора в таблице
@@ -219,4 +219,13 @@ interface ColumnInterface
      * Добавить внешний ключ
      */
     public function foreign(): ForeignIndexInterface;
+
+    /**
+     * Возвращает структуру
+     *
+     * @return array{columnName: (string|null), params: (array<string, mixed>|null), type: string}
+     */
+    public function getStructure(): array;
+
+    public static function create(): ColumnInterface;
 }

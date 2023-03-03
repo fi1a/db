@@ -7,12 +7,12 @@ namespace Fi1a\DB\Queries;
 /**
  * Название таблицы
  */
-interface NameActionInterface
+interface TableNameActionInterface
 {
     /**
      * Установить название таблицы
      *
      * @return $this
      */
-    public function name(string $name);
+    public function name(string $tableName);
 }

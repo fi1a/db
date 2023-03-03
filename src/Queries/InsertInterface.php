@@ -7,7 +7,7 @@ namespace Fi1a\DB\Queries;
 /**
  * Запрос на вставку
  */
-interface InsertInterface extends ActionInterface, NameActionInterface, ExecutableInterface
+interface InsertInterface extends ActionInterface, TableNameActionInterface, ExecutableInterface
 {
     /**
      * Перечисление колонок

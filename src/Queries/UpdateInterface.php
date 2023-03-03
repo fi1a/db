@@ -11,7 +11,7 @@ interface UpdateInterface extends
     ActionInterface,
     WhereActionInterface,
     LimitActionInterface,
-    NameActionInterface,
+    TableNameActionInterface,
     ExecutableInterface
 {
     /**

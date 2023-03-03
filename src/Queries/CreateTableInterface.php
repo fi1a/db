@@ -7,7 +7,7 @@ namespace Fi1a\DB\Queries;
 /**
  * Создание таблицы
  */
-interface CreateTableInterface extends ActionInterface, NameActionInterface
+interface CreateTableInterface extends ActionInterface, TableNameActionInterface
 {
     /**
      * Добавить колонку
