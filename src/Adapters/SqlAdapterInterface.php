@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Fi1a\DB\Drivers;
+namespace Fi1a\DB\Adapters;
 
 use Fi1a\DB\Queries\ActionInterface;
 
 /**
  * Драйвер SQL СУБД
  */
-interface SqlDriverInterface extends DriverInterface
+interface SqlAdapterInterface extends AdapterInterface
 {
     /**
      * Выполняет SQL запрос и возвращает результат запроса
@@ -25,6 +25,8 @@ interface SqlDriverInterface extends DriverInterface
 
     /**
      * Возвращает SQL
+     *
+     * @param ActionInterface|array<string, mixed> $query
      */
-    public function getSql(ActionInterface $query): string;
+    public function getSql($query): string;
 }

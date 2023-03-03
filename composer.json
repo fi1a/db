@@ -1,5 +1,5 @@
 {
-  "name": "fi1a/package-template",
+  "name": "fi1a/db",
   "type": "library",
   "description": "Инструменты для работы с базами данных на PHP",
   "keywords": [],
@@ -13,6 +13,7 @@
   ],
   "require": {
     "php": "^7.3 || ^8",
+    "ext-pdo": "*",
     "fi1a/facade": "dev-master",
     "fi1a/collection": "^2.0",
     "fi1a/dependency-injection": "^1.0"

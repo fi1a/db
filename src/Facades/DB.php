@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Fi1a\DB\Facades;
 
-use Fi1a\DB\Drivers\DriverInterface;
+use Fi1a\DB\Adapters\AdapterInterface;
+use Fi1a\DB\DBInterface;
 use Fi1a\DB\Queries\ActionInterface;
 use Fi1a\Facade\AbstractFacade;
-use stdClass;
 
 /**
  * БД
  *
- * @method DriverInterface connection(?string $connectionName)
+ * @method AdapterInterface connection(?string $connectionName)
  * @method bool exec(ActionInterface $query)
  * @method array query(ActionInterface $query)
  */
@@ -23,6 +23,6 @@ class DB extends AbstractFacade
      */
     protected static function factory(): object
     {
-        return new stdClass();
+        return di()->get(DBInterface::class);
     }
 }
