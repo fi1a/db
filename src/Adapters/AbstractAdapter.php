@@ -13,6 +13,11 @@ use Fi1a\DB\Queries\ActionInterface;
 abstract class AbstractAdapter implements AdapterInterface
 {
     /**
+     * Возвращает обработчик по типу запроса
+     */
+    abstract protected function getHandler(string $type): HandlerInterface;
+
+    /**
      * Возвращает стуктуру запроса
      *
      * @param ActionInterface|array<string, mixed> $query
@@ -35,5 +40,21 @@ abstract class AbstractAdapter implements AdapterInterface
         }
 
         return $query;
+    }
+
+    /**
+     * Возвращает обработчик
+     *
+     * @param ActionInterface|array<string, mixed> $query
+     *
+     * @return mixed
+     */
+    protected function prepare($query)
+    {
+        $query = $this->getQuery($query);
+        $handler = $this->getHandler((string) $query['type']);
+        $handler->validate($query);
+
+        return $handler->prepare($query);
     }
 }

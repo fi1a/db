@@ -7,16 +7,22 @@ namespace Fi1a\DB\Queries;
 /**
  * Создание таблицы
  */
-class CreateTable implements CreateTableInterface
+class CreateTable implements CreateTableInterface, ExecutableInterface
 {
     use TableNameActionTrait;
+    use ExecutableTrait;
 
-    public const TYPE = 'crateTable';
+    public const TYPE = 'createTable';
 
     /**
      * @var ColumnCollectionInterface
      */
     protected $columns;
+
+    /**
+     * @var bool
+     */
+    protected $ifNotExists = false;
 
     public function __construct()
     {
@@ -44,11 +50,22 @@ class CreateTable implements CreateTableInterface
     /**
      * @inheritDoc
      */
+    public function ifNotExists()
+    {
+        $this->ifNotExists = true;
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getStructure(): array
     {
         return [
             'type' => $this->getType(),
             'tableName' => $this->tableName,
+            'ifNotExists' => $this->ifNotExists,
             'columns' => $this->columns->getStructure(),
         ];
     }

@@ -15,4 +15,11 @@ interface CreateTableInterface extends ActionInterface, TableNameActionInterface
      * @return $this
      */
     public function column(ColumnInterface $column);
+
+    /**
+     * Добавляет IF NOT EXISTS к запросу
+     *
+     * @return $this
+     */
+    public function ifNotExists();
 }

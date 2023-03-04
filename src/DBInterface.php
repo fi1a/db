@@ -12,17 +12,19 @@ use Fi1a\DB\Queries\ActionInterface;
  */
 interface DBInterface
 {
+    public const DEFAULT_CONNECTION = 'default';
+
     /**
      * Соединение с БД
      */
-    public function connection(?string $connectionName): AdapterInterface;
+    public function connection(string $connectionName): AdapterInterface;
 
     /**
      * Добавить соединение
      *
      * @return $this
      */
-    public function addConnection(AdapterInterface $adapter, ?string $connectionName);
+    public function addConnection(AdapterInterface $adapter, string $connectionName);
 
     /**
      * Проверяет наличие соединения

@@ -20,11 +20,13 @@ class CreateTableTest extends TestCase
     {
         $query = new CreateTable();
         $query->name('tableName')
+            ->ifNotExists()
             ->column(Column::create()->name('column1'))
             ->column(Column::create()->name('column2'));
         $this->assertEquals([
-            'type' => 'crateTable',
+            'type' => 'createTable',
             'tableName' => 'tableName',
+            'ifNotExists' => true,
             'columns' => [
                 [
                     'columnName' => 'column1',
