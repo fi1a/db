@@ -32,7 +32,7 @@ class Schema implements SchemaInterface
      */
     public function drop(): DropTableInterface
     {
-        // TODO: Implement drop() method.
+        return new DropTable();
     }
 
     /**
