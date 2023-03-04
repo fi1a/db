@@ -147,7 +147,6 @@ class Column implements ColumnInterface
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function integer()
     {
@@ -311,7 +310,6 @@ class Column implements ColumnInterface
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function getStructure(): array
     {
@@ -324,7 +322,6 @@ class Column implements ColumnInterface
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public static function create(): ColumnInterface
     {

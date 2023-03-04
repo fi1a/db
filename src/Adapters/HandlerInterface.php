@@ -15,18 +15,11 @@ interface HandlerInterface
     public function validate(array $query): void;
 
     /**
-     * Выполняет запрос
-     *
-     * @param array<string, mixed> $query
-     */
-    public function exec(array $query): bool;
-
-    /**
-     * Выполняет запрос и возвращает результат
+     * Подготавливает для запроса
      *
      * @param array<string, mixed> $query
      *
-     * @return array<array-key, string>
+     * @return mixed
      */
-    public function query(array $query): array;
+    public function prepare(array $query);
 }

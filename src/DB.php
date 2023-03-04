@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Fi1a\DB;
 
 use Fi1a\DB\Adapters\AdapterInterface;
+use Fi1a\DB\Exceptions\ConnectionNotFoundException;
 
 /**
  * БД
@@ -12,39 +13,52 @@ use Fi1a\DB\Adapters\AdapterInterface;
 class DB implements DBInterface
 {
     /**
-     * @inheritDoc
-     * @psalm-suppress InvalidReturnType
+     * @var AdapterInterface[]
      */
-    public function connection(?string $connectionName = null): AdapterInterface
+    protected $connections = [];
+
+    /**
+     * @inheritDoc
+     */
+    public function connection(string $connectionName): AdapterInterface
     {
-        // TODO: Implement connection() method.
+        if (!$this->hasConnection($connectionName)) {
+            throw new ConnectionNotFoundException(sprintf('Соединение "%s" не найдено', $connectionName));
+        }
+
+        return $this->connections[mb_strtolower($connectionName)];
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
-    public function addConnection(AdapterInterface $adapter, ?string $connectionName)
+    public function addConnection(AdapterInterface $adapter, string $connectionName)
     {
-        // TODO: Implement addConnection() method.
+        $this->connections[mb_strtolower($connectionName)] = $adapter;
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function hasConnection(string $connectionName): bool
     {
-        // TODO: Implement hasConnection() method.
+        return array_key_exists(mb_strtolower($connectionName), $this->connections);
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function removeConnection(string $connectionName): bool
     {
-        // TODO: Implement removeConnection() method.
+        if (!$this->hasConnection($connectionName)) {
+            return false;
+        }
+
+        unset($this->connections[mb_strtolower($connectionName)]);
+
+        return true;
     }
 
     /**
@@ -52,7 +66,7 @@ class DB implements DBInterface
      */
     public function exec($query): bool
     {
-        return $this->connection()->exec($query);
+        return $this->connection(self::DEFAULT_CONNECTION)->exec($query);
     }
 
     /**
@@ -60,6 +74,6 @@ class DB implements DBInterface
      */
     public function query($query): array
     {
-        return $this->connection()->query($query);
+        return $this->connection(self::DEFAULT_CONNECTION)->query($query);
     }
 }

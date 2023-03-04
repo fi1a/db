@@ -13,8 +13,10 @@ interface SqlAdapterInterface extends AdapterInterface
 {
     /**
      * Выполняет SQL запрос и возвращает результат запроса
+     *
+     * @return int|false
      */
-    public function execSql(string $sql): int;
+    public function execSql(string $sql);
 
     /**
      * Выполняет выражение SQL и возвращает результат

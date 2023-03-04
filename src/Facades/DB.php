@@ -12,9 +12,12 @@ use Fi1a\Facade\AbstractFacade;
 /**
  * БД
  *
- * @method AdapterInterface connection(?string $connectionName)
- * @method bool exec(ActionInterface $query)
- * @method array query(ActionInterface $query)
+ * @method static AdapterInterface connection(?string $connectionName)
+ * @method static DBInterface addConnection(AdapterInterface $adapter, string $connectionName)
+ * @method static bool hasConnection(string $connectionName)
+ * @method static bool removeConnection(string $connectionName)
+ * @method static bool exec(ActionInterface $query)
+ * @method static array query(ActionInterface $query)
  */
 class DB extends AbstractFacade
 {
