@@ -30,6 +30,21 @@ class Column implements ColumnInterface
     protected $typeParams;
 
     /**
+     * @var bool
+     */
+    protected $nullable = false;
+
+    /**
+     * @var mixed|null
+     */
+    protected $default = null;
+
+    /**
+     * @var bool
+     */
+    protected $unsigned = false;
+
+    /**
      * @inheritDoc
      */
     protected function __construct()
@@ -57,92 +72,102 @@ class Column implements ColumnInterface
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function bigInteger()
     {
-        // TODO: Implement bigInteger() method.
+        $this->setType('bigInteger');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function binary()
     {
-        // TODO: Implement binary() method.
+        $this->setType('binary');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function boolean()
     {
-        // TODO: Implement boolean() method.
+        $this->setType('boolean');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function char(int $length = 255)
     {
-        // TODO: Implement char() method.
+        $this->setType('char', ['length' => 255]);
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function date()
     {
-        // TODO: Implement date() method.
+        $this->setType('date');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function dateTime()
     {
-        // TODO: Implement dateTime() method.
+        $this->setType('dateTime');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function decimal(int $total = 8, int $places = 2)
     {
-        // TODO: Implement decimal() method.
+        $this->setType('decimal', ['total' => $total, 'places' => $places]);
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function double(?int $total = null, ?int $places = null)
     {
-        // TODO: Implement double() method.
+        $this->setType('double', ['total' => $total, 'places' => $places]);
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function enum(array $enums)
     {
-        // TODO: Implement enum() method.
+        $this->setType('enum', ['enums' => $enums]);
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function float()
     {
-        // TODO: Implement float() method.
+        $this->setType('float');
+
+        return $this;
     }
 
     /**
@@ -157,119 +182,132 @@ class Column implements ColumnInterface
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function json()
     {
-        // TODO: Implement json() method.
+        $this->setType('json');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function longText()
     {
-        // TODO: Implement longText() method.
+        $this->setType('longText');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function mediumInteger()
     {
-        // TODO: Implement mediumInteger() method.
+        $this->setType('mediumInteger');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function mediumText()
     {
-        // TODO: Implement mediumText() method.
+        $this->setType('mediumText');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function smallInteger()
     {
-        // TODO: Implement smallInteger() method.
+        $this->setType('smallInteger');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function tinyInteger()
     {
-        // TODO: Implement tinyInteger() method.
+        $this->setType('tinyInteger');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function string(int $length = 255)
     {
-        // TODO: Implement string() method.
+        $this->setType('string', ['length' => $length]);
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function text()
     {
-        // TODO: Implement text() method.
+        $this->setType('text');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function time()
     {
-        // TODO: Implement time() method.
+        $this->setType('time');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function timestamp()
     {
-        // TODO: Implement timestamp() method.
+        $this->setType('timestamp');
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function nullable()
     {
-        // TODO: Implement nullable() method.
+        $this->nullable = true;
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function default($value)
     {
-        // TODO: Implement default() method.
+        $this->default = $value;
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function unsigned()
     {
-        // TODO: Implement unsigned() method.
+        $this->unsigned = true;
+
+        return $this;
     }
 
     /**
@@ -317,6 +355,14 @@ class Column implements ColumnInterface
             'columnName' => $this->columnName,
             'type' => $this->type,
             'params' => $this->typeParams,
+            'nullable' => $this->nullable,
+            'default' => $this->default,
+            'unsigned' => $this->unsigned,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
         ];
     }
 

@@ -22,11 +22,19 @@ class ColumnTest extends TestCase
             'columnName' => 'column1',
             'type' => 'integer',
             'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
         ], $column->getStructure());
     }
 
     /**
-     * INTEGER
+     * integer
      */
     public function testInteger(): void
     {
@@ -35,6 +43,503 @@ class ColumnTest extends TestCase
             'columnName' => 'column1',
             'type' => 'integer',
             'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * bigInteger
+     */
+    public function testBigInteger(): void
+    {
+        $column = Column::create()->name('column1')->bigInteger();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'bigInteger',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * binary
+     */
+    public function testBinary(): void
+    {
+        $column = Column::create()->name('column1')->binary();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'binary',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * boolean
+     */
+    public function testBoolean(): void
+    {
+        $column = Column::create()->name('column1')->boolean();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'boolean',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * char
+     */
+    public function testChar(): void
+    {
+        $column = Column::create()->name('column1')->char();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'char',
+            'params' => ['length' => 255],
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * date
+     */
+    public function testDate(): void
+    {
+        $column = Column::create()->name('column1')->date();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'date',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * dateTime
+     */
+    public function testDateTime(): void
+    {
+        $column = Column::create()->name('column1')->dateTime();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'dateTime',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * decimal
+     */
+    public function testDecimal(): void
+    {
+        $column = Column::create()->name('column1')->decimal();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'decimal',
+            'params' => [
+                'total' => 8,
+                'places' => 2,
+            ],
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * double
+     */
+    public function testDouble(): void
+    {
+        $column = Column::create()->name('column1')->double();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'double',
+            'params' => [
+                'total' => null,
+                'places' => null,
+            ],
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * enum
+     */
+    public function testEnum(): void
+    {
+        $column = Column::create()->name('column1')->enum(['enum1', 'enum2']);
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'enum',
+            'params' => ['enums' => ['enum1', 'enum2'],],
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * float
+     */
+    public function testFloat(): void
+    {
+        $column = Column::create()->name('column1')->float();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'float',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * json
+     */
+    public function testJson(): void
+    {
+        $column = Column::create()->name('column1')->json();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'json',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * longText
+     */
+    public function testLongText(): void
+    {
+        $column = Column::create()->name('column1')->longText();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'longText',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * mediumInteger
+     */
+    public function testMediumInteger(): void
+    {
+        $column = Column::create()->name('column1')->mediumInteger();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'mediumInteger',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * mediumText
+     */
+    public function testMediumText(): void
+    {
+        $column = Column::create()->name('column1')->mediumText();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'mediumText',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * smallInteger
+     */
+    public function testSmallInteger(): void
+    {
+        $column = Column::create()->name('column1')->smallInteger();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'smallInteger',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * tinyInteger
+     */
+    public function testTinyInteger(): void
+    {
+        $column = Column::create()->name('column1')->tinyInteger();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'tinyInteger',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * string
+     */
+    public function testString(): void
+    {
+        $column = Column::create()->name('column1')->string();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'string',
+            'params' => ['length' => 255],
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * text
+     */
+    public function testText(): void
+    {
+        $column = Column::create()->name('column1')->text();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'text',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * time
+     */
+    public function testTime(): void
+    {
+        $column = Column::create()->name('column1')->time();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'time',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * timestamp
+     */
+    public function testTimestamp(): void
+    {
+        $column = Column::create()->name('column1')->timestamp();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'timestamp',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * nullable
+     */
+    public function testNullable(): void
+    {
+        $column = Column::create()->name('column1')->nullable();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => true,
+            'default' => null,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * default
+     */
+    public function testDefault(): void
+    {
+        $column = Column::create()->name('column1')->default(100);
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => 100,
+            'unsigned' => false,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * unsigned
+     */
+    public function testUnsigned(): void
+    {
+        $column = Column::create()->name('column1')->unsigned();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unsigned' => true,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
         ], $column->getStructure());
     }
 }
