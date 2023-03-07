@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Fi1a\DB\Queries\Expressions;
 
 /**
- * Sql выражение
+ * Выражение
  */
 class Expression implements ExpressionInterface
 {

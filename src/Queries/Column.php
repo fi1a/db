@@ -73,9 +73,9 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function bigInteger()
+    public function bigInteger(bool $unsigned = false)
     {
-        $this->setType('bigInteger');
+        $this->setType('bigInteger', ['unsigned' => $unsigned]);
 
         return $this;
     }
@@ -105,7 +105,7 @@ class Column implements ColumnInterface
      */
     public function char(int $length = 255)
     {
-        $this->setType('char', ['length' => 255]);
+        $this->setType('char', ['length' => $length]);
 
         return $this;
     }
@@ -133,9 +133,9 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function decimal(int $total = 8, int $places = 2)
+    public function decimal(bool $unsigned = false, int $total = 8, int $places = 2)
     {
-        $this->setType('decimal', ['total' => $total, 'places' => $places]);
+        $this->setType('decimal', ['total' => $total, 'places' => $places, 'unsigned' => $unsigned]);
 
         return $this;
     }
@@ -143,9 +143,9 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function double(?int $total = null, ?int $places = null)
+    public function double(bool $unsigned = false, ?int $total = null, ?int $places = null)
     {
-        $this->setType('double', ['total' => $total, 'places' => $places]);
+        $this->setType('double', ['total' => $total, 'places' => $places, 'unsigned' => $unsigned]);
 
         return $this;
     }
@@ -163,9 +163,9 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function float()
+    public function float(bool $unsigned = false)
     {
-        $this->setType('float');
+        $this->setType('float', ['unsigned' => $unsigned]);
 
         return $this;
     }
@@ -173,9 +173,9 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function integer()
+    public function integer(bool $unsigned = false)
     {
-        $this->setType('integer');
+        $this->setType('integer', ['unsigned' => $unsigned]);
 
         return $this;
     }
@@ -203,9 +203,9 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function mediumInteger()
+    public function mediumInteger(bool $unsigned = false)
     {
-        $this->setType('mediumInteger');
+        $this->setType('mediumInteger', ['unsigned' => $unsigned]);
 
         return $this;
     }
@@ -223,9 +223,9 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function smallInteger()
+    public function smallInteger(bool $unsigned = false)
     {
-        $this->setType('smallInteger');
+        $this->setType('smallInteger', ['unsigned' => $unsigned]);
 
         return $this;
     }
@@ -233,9 +233,9 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function tinyInteger()
+    public function tinyInteger(bool $unsigned = false)
     {
-        $this->setType('tinyInteger');
+        $this->setType('tinyInteger', ['unsigned' => $unsigned]);
 
         return $this;
     }
@@ -302,16 +302,6 @@ class Column implements ColumnInterface
 
     /**
      * @inheritDoc
-     */
-    public function unsigned()
-    {
-        $this->unsigned = true;
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
      * @psalm-suppress InvalidReturnType
      */
     public function unique(): UniqueIndexInterface
@@ -357,7 +347,6 @@ class Column implements ColumnInterface
             'params' => $this->typeParams,
             'nullable' => $this->nullable,
             'default' => $this->default,
-            'unsigned' => $this->unsigned,
             'unique' => null,
             'primary' => null,
             'index' => null,

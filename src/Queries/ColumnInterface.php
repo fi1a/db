@@ -33,7 +33,7 @@ interface ColumnInterface
      *
      * @return $this
      */
-    public function bigInteger();
+    public function bigInteger(bool $unsigned = false);
 
     /**
      * BLOB
@@ -75,14 +75,14 @@ interface ColumnInterface
      *
      * @return $this
      */
-    public function decimal(int $total = 8, int $places = 2);
+    public function decimal(bool $unsigned = false, int $total = 8, int $places = 2);
 
     /**
      * DOUBLE
      *
      * @return $this
      */
-    public function double(?int $total = null, ?int $places = null);
+    public function double(bool $unsigned = false, ?int $total = null, ?int $places = null);
 
     /**
      * ENUM
@@ -98,14 +98,14 @@ interface ColumnInterface
      *
      * @return $this
      */
-    public function float();
+    public function float(bool $unsigned = false);
 
     /**
      * INTEGER
      *
      * @return $this
      */
-    public function integer();
+    public function integer(bool $unsigned = false);
 
     /**
      * JSON
@@ -126,7 +126,7 @@ interface ColumnInterface
      *
      * @return $this
      */
-    public function mediumInteger();
+    public function mediumInteger(bool $unsigned = false);
 
     /**
      * MEDIUMTEXT
@@ -140,14 +140,14 @@ interface ColumnInterface
      *
      * @return $this
      */
-    public function smallInteger();
+    public function smallInteger(bool $unsigned = false);
 
     /**
      * TINYINT
      *
      * @return $this
      */
-    public function tinyInteger();
+    public function tinyInteger(bool $unsigned = false);
 
     /**
      * VARCHAR
@@ -192,13 +192,6 @@ interface ColumnInterface
      * @return $this
      */
     public function default($value);
-
-    /**
-     * Установить INTEGER в UNSIGNED
-     *
-     * @return $this
-     */
-    public function unsigned();
 
     /**
      * Добавить уникальный ключ
