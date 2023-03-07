@@ -8,6 +8,7 @@ use Fi1a\DB\Adapters\AdapterInterface;
 use Fi1a\DB\DB;
 use Fi1a\DB\DBInterface;
 use Fi1a\DB\Exceptions\ConnectionNotFoundException;
+use Fi1a\DB\Facades\DB as DBFacade;
 use Fi1a\DB\Facades\Schema;
 use Fi1a\DB\Queries\Column;
 use Fi1a\MySql\MySqlAdapter;
@@ -15,6 +16,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * БД
+ *
+ * @runInSeparateProcess
  */
 class DBTest extends TestCase
 {
@@ -51,6 +54,27 @@ class DBTest extends TestCase
             ->column(Column::create()->name('column1'));
 
         $this->assertTrue($db->exec($query));
+    }
+
+    /**
+     * Выполнить запрос
+     */
+    public function testQueryExec(): void
+    {
+        $driver = $this->getMockBuilder(MySqlAdapter::class)
+            ->setConstructorArgs([getenv('DB_DSN'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')])
+            ->onlyMethods(['exec'])
+            ->getMock();
+
+        $driver->expects($this->once())->method('exec')->willReturn(true);
+
+        DBFacade::addConnection($driver, DBInterface::DEFAULT_CONNECTION);
+
+        $query = Schema::create()
+            ->name('tableName')
+            ->column(Column::create()->name('column1'));
+
+        $this->assertTrue($query->exec());
     }
 
     /**
