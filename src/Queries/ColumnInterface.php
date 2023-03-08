@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace Fi1a\DB\Queries;
 
-use Fi1a\DB\Queries\Indexes\BasicIndexInterface;
-use Fi1a\DB\Queries\Indexes\ForeignIndexInterface;
-use Fi1a\DB\Queries\Indexes\PrimaryIndexInterface;
-use Fi1a\DB\Queries\Indexes\UniqueIndexInterface;
-
 /**
  * Колонка
  */
@@ -195,23 +190,31 @@ interface ColumnInterface
 
     /**
      * Добавить уникальный ключ
+     *
+     * @return $this
      */
-    public function unique(): UniqueIndexInterface;
+    public function unique(?string $name = null);
 
     /**
      * Добавить первичный ключ
+     *
+     * @return $this
      */
-    public function primary(): PrimaryIndexInterface;
+    public function primary();
 
     /**
      * Добавить индекс
+     *
+     * @return $this
      */
-    public function index(): BasicIndexInterface;
+    public function index(?string $name = null);
 
     /**
      * Добавить внешний ключ
+     *
+     * @return $this
      */
-    public function foreign(): ForeignIndexInterface;
+    public function foreign(string $tableName, string $references, ?string $action = null, ?string $name = null);
 
     /**
      * Возвращает структуру

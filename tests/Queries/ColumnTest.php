@@ -519,4 +519,123 @@ class ColumnTest extends TestCase
             'increments' => false,
         ], $column->getStructure());
     }
+
+    /**
+     * Increments
+     */
+    public function testIncrements(): void
+    {
+        $column = Column::create()->name('column1')->increments();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => true,
+        ], $column->getStructure());
+    }
+
+    /**
+     * Unique
+     */
+    public function testUnique(): void
+    {
+        $column = Column::create()->name('column1')->unique('ixColumn1');
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unique' => [
+                'tableName' => null,
+                'columns' => [],
+                'name' => 'ixColumn1',
+            ],
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * Primary
+     */
+    public function testPrimary(): void
+    {
+        $column = Column::create()->name('column1')->primary();
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unique' => null,
+            'primary' => [
+                'tableName' => null,
+                'columns' => [],
+            ],
+            'index' => null,
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * Index
+     */
+    public function testIndex(): void
+    {
+        $column = Column::create()->name('column1')->index('ixColumn1');
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unique' => null,
+            'primary' => null,
+            'index' => [
+                'tableName' => null,
+                'columns' => [],
+                'name' => 'ixColumn1',
+            ],
+            'foreign' => null,
+            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * Foreign
+     */
+    public function testForeign(): void
+    {
+        $column = Column::create()->name('column1')
+            ->foreign('tableName2', 'column2', 'CASCADE', 'ixColumn1');
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => [
+                'tableName' => null,
+                'on' => 'tableName2',
+                'name' => 'ixColumn1',
+                'columns' => [],
+                'references' => 'column2',
+                'action' => 'CASCADE',
+            ],
+            'increments' => false,
+        ], $column->getStructure());
+    }
 }
