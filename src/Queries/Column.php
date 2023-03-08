@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Fi1a\DB\Queries;
 
+use Fi1a\DB\Queries\Indexes\BasicIndex;
 use Fi1a\DB\Queries\Indexes\BasicIndexInterface;
+use Fi1a\DB\Queries\Indexes\ForeignIndex;
 use Fi1a\DB\Queries\Indexes\ForeignIndexInterface;
+use Fi1a\DB\Queries\Indexes\PrimaryIndex;
 use Fi1a\DB\Queries\Indexes\PrimaryIndexInterface;
+use Fi1a\DB\Queries\Indexes\UniqueIndex;
 use Fi1a\DB\Queries\Indexes\UniqueIndexInterface;
 
 /**
@@ -45,6 +49,31 @@ class Column implements ColumnInterface
     protected $unsigned = false;
 
     /**
+     * @var bool
+     */
+    protected $increments = false;
+
+    /**
+     * @var PrimaryIndexInterface|null
+     */
+    protected $primary;
+
+    /**
+     * @var BasicIndexInterface|null
+     */
+    protected $index;
+
+    /**
+     * @var UniqueIndexInterface|null
+     */
+    protected $unique;
+
+    /**
+     * @var ForeignIndexInterface|null
+     */
+    protected $foreign;
+
+    /**
      * @inheritDoc
      */
     protected function __construct()
@@ -67,7 +96,9 @@ class Column implements ColumnInterface
      */
     public function increments()
     {
-        // TODO: Implement increments() method.
+        $this->increments = true;
+
+        return $this;
     }
 
     /**
@@ -304,36 +335,55 @@ class Column implements ColumnInterface
      * @inheritDoc
      * @psalm-suppress InvalidReturnType
      */
-    public function unique(): UniqueIndexInterface
+    public function unique(?string $name = null)
     {
-        // TODO: Implement unique() method.
+        $this->unique = new UniqueIndex();
+        if ($name !== null) {
+            $this->unique->name($name);
+        }
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
-    public function primary(): PrimaryIndexInterface
+    public function primary()
     {
-        // TODO: Implement primary() method.
+        $this->primary = new PrimaryIndex();
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
-    public function index(): BasicIndexInterface
+    public function index(?string $name = null)
     {
-        // TODO: Implement index() method.
+        $this->index = new BasicIndex();
+        if ($name !== null) {
+            $this->index->name($name);
+        }
+
+        return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
-    public function foreign(): ForeignIndexInterface
+    public function foreign(string $tableName, string $references, ?string $action = null, ?string $name = null)
     {
-        // TODO: Implement foreign() method.
+        $this->foreign = new ForeignIndex();
+        $this->foreign->on($tableName)
+            ->references($references);
+        if ($action) {
+            $this->foreign->onDelete($action);
+        }
+        if ($name !== null) {
+            $this->foreign->name($name);
+        }
+
+        return $this;
     }
 
     /**
@@ -347,11 +397,11 @@ class Column implements ColumnInterface
             'params' => $this->typeParams,
             'nullable' => $this->nullable,
             'default' => $this->default,
-            'unique' => null,
-            'primary' => null,
-            'index' => null,
-            'foreign' => null,
-            'increments' => false,
+            'unique' => $this->unique ? $this->unique->getStructure() : null,
+            'primary' => $this->primary ? $this->primary->getStructure() : null,
+            'index' => $this->index ? $this->index->getStructure() : null,
+            'foreign' => $this->foreign ? $this->foreign->getStructure() : null,
+            'increments' => $this->increments,
         ];
     }
 
