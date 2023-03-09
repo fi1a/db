@@ -9,6 +9,14 @@ namespace Fi1a\DB\Queries\Indexes;
  */
 interface ForeignIndexInterface extends IndexInterface, NamedIndexInterface
 {
+    public const CASCADE = 'CASCADE';
+
+    public const SET_NULL = 'SET NULL';
+
+    public const RESTRICT = 'RESTRICT';
+
+    public const SET_DEFAULT = 'SET DEFAULT';
+
     /**
      * Название колонки на которую ссылается внешний ключ
      *
@@ -29,4 +37,11 @@ interface ForeignIndexInterface extends IndexInterface, NamedIndexInterface
      * @return $this
      */
     public function onDelete(string $action);
+
+    /**
+     * Действие при обновлении
+     *
+     * @return $this
+     */
+    public function onUpdate(string $action);
 }

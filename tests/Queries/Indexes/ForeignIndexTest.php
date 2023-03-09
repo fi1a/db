@@ -22,6 +22,7 @@ class ForeignIndexTest extends TestCase
         $foreign->on('tableName2')
             ->references('refColumn')
             ->onDelete('CASCADE')
+            ->onUpdate('CASCADE')
             ->column('column1')
             ->table('tableName1');
 
@@ -33,7 +34,8 @@ class ForeignIndexTest extends TestCase
             'name' => 'ixColumn1',
             'on' => 'tableName2',
             'references' => 'refColumn',
-            'action' => 'CASCADE',
+            'onDelete' => 'CASCADE',
+            'onUpdate' => 'CASCADE',
         ], $foreign->getStructure());
     }
 }

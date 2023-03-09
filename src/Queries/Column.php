@@ -86,13 +86,21 @@ class Column implements ColumnInterface
     public function name(string $columnName)
     {
         $this->columnName = $columnName;
+        if ($this->index) {
+            $this->index->column($columnName);
+        }
+        if ($this->unique) {
+            $this->unique->column($columnName);
+        }
+        if ($this->foreign) {
+            $this->foreign->column($columnName);
+        }
 
         return $this;
     }
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function increments()
     {
@@ -333,11 +341,13 @@ class Column implements ColumnInterface
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function unique(?string $name = null)
     {
         $this->unique = new UniqueIndex();
+        if ($this->columnName) {
+            $this->unique->column($this->columnName);
+        }
         if ($name !== null) {
             $this->unique->name($name);
         }
@@ -361,6 +371,9 @@ class Column implements ColumnInterface
     public function index(?string $name = null)
     {
         $this->index = new BasicIndex();
+        if ($this->columnName) {
+            $this->index->column($this->columnName);
+        }
         if ($name !== null) {
             $this->index->name($name);
         }
@@ -371,13 +384,24 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function foreign(string $tableName, string $references, ?string $action = null, ?string $name = null)
-    {
+    public function foreign(
+        string $tableName,
+        string $references,
+        ?string $onDelete = null,
+        ?string $onUpdate = null,
+        ?string $name = null
+    ) {
         $this->foreign = new ForeignIndex();
+        if ($this->columnName) {
+            $this->foreign->column($this->columnName);
+        }
         $this->foreign->on($tableName)
             ->references($references);
-        if ($action) {
-            $this->foreign->onDelete($action);
+        if ($onDelete) {
+            $this->foreign->onDelete($onDelete);
+        }
+        if ($onUpdate) {
+            $this->foreign->onUpdate($onUpdate);
         }
         if ($name !== null) {
             $this->foreign->name($name);
