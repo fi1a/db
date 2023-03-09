@@ -554,7 +554,9 @@ class ColumnTest extends TestCase
             'default' => null,
             'unique' => [
                 'tableName' => null,
-                'columns' => [],
+                'columns' => [
+                    'column1',
+                ],
                 'name' => 'ixColumn1',
             ],
             'primary' => null,
@@ -603,7 +605,9 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => [
                 'tableName' => null,
-                'columns' => [],
+                'columns' => [
+                    'column1',
+                ],
                 'name' => 'ixColumn1',
             ],
             'foreign' => null,
@@ -617,7 +621,7 @@ class ColumnTest extends TestCase
     public function testForeign(): void
     {
         $column = Column::create()->name('column1')
-            ->foreign('tableName2', 'column2', 'CASCADE', 'ixColumn1');
+            ->foreign('tableName2', 'column2', 'CASCADE', 'CASCADE', 'ixColumn1');
         $this->assertEquals([
             'columnName' => 'column1',
             'type' => 'integer',
@@ -631,9 +635,12 @@ class ColumnTest extends TestCase
                 'tableName' => null,
                 'on' => 'tableName2',
                 'name' => 'ixColumn1',
-                'columns' => [],
+                'columns' => [
+                    'column1',
+                ],
                 'references' => 'column2',
-                'action' => 'CASCADE',
+                'onDelete' => 'CASCADE',
+                'onUpdate' => 'CASCADE',
             ],
             'increments' => false,
         ], $column->getStructure());

@@ -22,7 +22,12 @@ class ForeignIndex extends NamedIndex implements ForeignIndexInterface
     /**
      * @var string|null
      */
-    protected $action;
+    protected $onDelete;
+
+    /**
+     * @var string|null
+     */
+    protected $onUpdate;
 
     /**
      * @inheritDoc
@@ -49,7 +54,7 @@ class ForeignIndex extends NamedIndex implements ForeignIndexInterface
      */
     public function onDelete(string $action)
     {
-        $this->action = $action;
+        $this->onDelete = $action;
 
         return $this;
     }
@@ -57,11 +62,11 @@ class ForeignIndex extends NamedIndex implements ForeignIndexInterface
     /**
      * @inheritDoc
      */
-    public function column(string $column)
+    public function onUpdate(string $action)
     {
-        $this->columns = [];
+        $this->onUpdate = $action;
 
-        return parent::column($column);
+        return $this;
     }
 
     /**
@@ -73,7 +78,8 @@ class ForeignIndex extends NamedIndex implements ForeignIndexInterface
      *     name: string|null,
      *     on: string|null,
      *     references: string|null,
-     *     action: string|null
+     *     onDelete: string|null,
+     *     onUpdate: string|null
      * }
      */
     public function getStructure(): array
@@ -82,7 +88,8 @@ class ForeignIndex extends NamedIndex implements ForeignIndexInterface
 
         $structure['on'] = $this->on;
         $structure['references'] = $this->references;
-        $structure['action'] = $this->action;
+        $structure['onDelete'] = $this->onDelete;
+        $structure['onUpdate'] = $this->onUpdate;
 
         return $structure;
     }

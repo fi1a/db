@@ -214,7 +214,13 @@ interface ColumnInterface
      *
      * @return $this
      */
-    public function foreign(string $tableName, string $references, ?string $action = null, ?string $name = null);
+    public function foreign(
+        string $tableName,
+        string $references,
+        ?string $onDelete = null,
+        ?string $onUpdate = null,
+        ?string $name = null
+    );
 
     /**
      * Возвращает структуру
