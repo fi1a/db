@@ -2,18 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Fi1a\DB\Queries\Indexes;
+namespace Fi1a\DB\Queries;
 
 /**
- * Индекс
+ * Базовый запрос добавления индекса
  */
-interface IndexInterface
+interface ActionIndexInterface extends ActionInterface
 {
-    /**
-     * Возвращает тип индекса
-     */
-    public function getType(): string;
-
     /**
      * Добавить колонку
      *
@@ -36,11 +31,4 @@ interface IndexInterface
      * @return $this
      */
     public function table(string $tableName);
-
-    /**
-     * Возвращает структуру
-     *
-     * @return array{tableName: string|null, columns: array<array-key, string>}
-     */
-    public function getStructure(): array;
 }

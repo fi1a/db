@@ -20,7 +20,7 @@ class ForeignIndexTest extends TestCase
         $foreign = new ForeignIndex();
 
         $foreign->on('tableName2')
-            ->references('refColumn')
+            ->references(['refColumn'])
             ->onDelete('CASCADE')
             ->onUpdate('CASCADE')
             ->column('column1')
@@ -33,9 +33,12 @@ class ForeignIndexTest extends TestCase
             ],
             'name' => 'ixColumn1',
             'on' => 'tableName2',
-            'references' => 'refColumn',
+            'references' => [
+                'refColumn',
+            ],
             'onDelete' => 'CASCADE',
             'onUpdate' => 'CASCADE',
+            'type' => 'foreign',
         ], $foreign->getStructure());
     }
 }

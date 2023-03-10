@@ -9,10 +9,12 @@ namespace Fi1a\DB\Queries\Indexes;
  */
 class ForeignIndex extends NamedIndex implements ForeignIndexInterface
 {
+    public const TYPE = 'foreign';
+
     /**
-     * @var string|null
+     * @var string[]
      */
-    protected $references;
+    protected $references = [];
 
     /**
      * @var string|null
@@ -32,9 +34,36 @@ class ForeignIndex extends NamedIndex implements ForeignIndexInterface
     /**
      * @inheritDoc
      */
-    public function references(string $column)
+    public function getType(): string
     {
-        $this->references = $column;
+        return self::TYPE;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function references(array $columns)
+    {
+        $this->references = [];
+        foreach ($columns as $column) {
+            $this->reference($column);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function reference(string $column)
+    {
+        foreach ($this->references as $existingColumn) {
+            if (mb_strtolower($existingColumn) === mb_strtolower($column)) {
+                return $this;
+            }
+        }
+
+        $this->references[] = $column;
 
         return $this;
     }
@@ -77,7 +106,7 @@ class ForeignIndex extends NamedIndex implements ForeignIndexInterface
      *     columns: array<array-key, string>,
      *     name: string|null,
      *     on: string|null,
-     *     references: string|null,
+     *     references: string[],
      *     onDelete: string|null,
      *     onUpdate: string|null
      * }

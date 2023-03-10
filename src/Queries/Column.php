@@ -44,16 +44,6 @@ class Column implements ColumnInterface
     protected $default = null;
 
     /**
-     * @var bool
-     */
-    protected $unsigned = false;
-
-    /**
-     * @var bool
-     */
-    protected $increments = false;
-
-    /**
      * @var PrimaryIndexInterface|null
      */
     protected $primary;
@@ -95,16 +85,6 @@ class Column implements ColumnInterface
         if ($this->foreign) {
             $this->foreign->column($columnName);
         }
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function increments()
-    {
-        $this->increments = true;
 
         return $this;
     }
@@ -358,9 +338,13 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function primary()
+    public function primary(bool $increments = true)
     {
         $this->primary = new PrimaryIndex();
+
+        if ($increments) {
+            $this->primary->increments();
+        }
 
         return $this;
     }
@@ -396,7 +380,7 @@ class Column implements ColumnInterface
             $this->foreign->column($this->columnName);
         }
         $this->foreign->on($tableName)
-            ->references($references);
+            ->reference($references);
         if ($onDelete) {
             $this->foreign->onDelete($onDelete);
         }
@@ -425,7 +409,6 @@ class Column implements ColumnInterface
             'primary' => $this->primary ? $this->primary->getStructure() : null,
             'index' => $this->index ? $this->index->getStructure() : null,
             'foreign' => $this->foreign ? $this->foreign->getStructure() : null,
-            'increments' => $this->increments,
         ];
     }
 

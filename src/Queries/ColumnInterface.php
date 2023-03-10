@@ -17,13 +17,6 @@ interface ColumnInterface
     public function name(string $columnName);
 
     /**
-     * Увеличение идентификатора в таблице
-     *
-     * @return $this
-     */
-    public function increments();
-
-    /**
      * BIGINT
      *
      * @return $this
@@ -200,7 +193,7 @@ interface ColumnInterface
      *
      * @return $this
      */
-    public function primary();
+    public function primary(bool $increments = true);
 
     /**
      * Добавить индекс

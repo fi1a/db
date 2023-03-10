@@ -37,11 +37,10 @@ class Schema implements SchemaInterface
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function addIndex(): AddIndexInterface
     {
-        // TODO: Implement addIndex() method.
+        return new AddIndex();
     }
 
     /**

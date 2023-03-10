@@ -24,6 +24,12 @@ abstract class Index implements IndexInterface
      */
     public function column(string $column)
     {
+        foreach ($this->columns as $existingColumn) {
+            if (mb_strtolower($existingColumn) === mb_strtolower($column)) {
+                return $this;
+            }
+        }
+
         $this->columns[] = $column;
 
         return $this;
@@ -58,6 +64,7 @@ abstract class Index implements IndexInterface
     public function getStructure(): array
     {
         return [
+            'type' => $this->getType(),
             'tableName' => $this->tableName,
             'columns' => $this->columns,
         ];

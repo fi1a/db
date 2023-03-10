@@ -28,6 +28,7 @@ class BasicIndexTest extends TestCase
                 'column1',
             ],
             'name' => 'ixColumn1',
+            'type' => 'index',
         ], $index->getStructure());
     }
 
@@ -48,6 +49,7 @@ class BasicIndexTest extends TestCase
                 'column1',
             ],
             'name' => 'ixColumnIndex',
+            'type' => 'index',
         ], $index->getStructure());
     }
 
@@ -67,6 +69,7 @@ class BasicIndexTest extends TestCase
                 'column1', 'column2',
             ],
             'name' => 'ixColumn1Column2',
+            'type' => 'index',
         ], $index->getStructure());
     }
 }

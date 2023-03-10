@@ -38,7 +38,6 @@ class CreateTableTest extends TestCase
                     'primary' => null,
                     'index' => null,
                     'foreign' => null,
-                    'increments' => false,
                 ],
                 [
                     'columnName' => 'column2',
@@ -50,7 +49,6 @@ class CreateTableTest extends TestCase
                     'primary' => null,
                     'index' => null,
                     'foreign' => null,
-                    'increments' => false,
                 ],
             ],
         ], $query->getStructure());
