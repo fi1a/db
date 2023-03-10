@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Fi1a\DB\Queries\Indexes;
+namespace Fi1a\DB\Queries;
 
 /**
- * Первичный ключ
+ * Добавление первичного индекса
  */
-interface PrimaryIndexInterface extends IndexInterface
+interface AddPrimaryIndexInterface extends ActionIndexInterface
 {
     /**
      * Увеличение идентификатора в таблице

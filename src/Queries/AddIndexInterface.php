@@ -4,33 +4,28 @@ declare(strict_types=1);
 
 namespace Fi1a\DB\Queries;
 
-use Fi1a\DB\Queries\Indexes\BasicIndexInterface;
-use Fi1a\DB\Queries\Indexes\ForeignIndexInterface;
-use Fi1a\DB\Queries\Indexes\PrimaryIndexInterface;
-use Fi1a\DB\Queries\Indexes\UniqueIndexInterface;
-
 /**
  * Добавление индекса
  */
-interface AddIndexInterface extends ActionInterface
+interface AddIndexInterface
 {
     /**
      * Добавить уникальный ключ
      */
-    public function unique(): UniqueIndexInterface;
+    public function unique(): AddUniqueIndexInterface;
 
     /**
      * Добавить первичный ключ
      */
-    public function primary(): PrimaryIndexInterface;
+    public function primary(): AddPrimaryIndexInterface;
 
     /**
      * Добавить индекс
      */
-    public function index(): BasicIndexInterface;
+    public function index(): AddBasicIndexInterface;
 
     /**
      * Добавить внешний ключ
      */
-    public function foreign(): ForeignIndexInterface;
+    public function foreign(): AddForeignIndexInterface;
 }

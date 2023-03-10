@@ -9,4 +9,13 @@ namespace Fi1a\DB\Queries\Indexes;
  */
 class BasicIndex extends NamedIndex implements BasicIndexInterface
 {
+    public const TYPE = 'index';
+
+    /**
+     * @inheritDoc
+     */
+    public function getType(): string
+    {
+        return self::TYPE;
+    }
 }

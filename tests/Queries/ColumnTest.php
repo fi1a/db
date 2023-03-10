@@ -28,7 +28,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -48,7 +47,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -68,7 +66,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -88,7 +85,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -108,7 +104,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -128,7 +123,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -148,7 +142,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -168,7 +161,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -192,7 +184,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -216,7 +207,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -236,7 +226,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -256,7 +245,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -276,7 +264,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -296,7 +283,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -316,7 +302,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -336,7 +321,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -356,7 +340,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -376,7 +359,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -396,7 +378,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -416,7 +397,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -436,7 +416,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -456,7 +435,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -476,7 +454,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -496,7 +473,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -516,27 +492,6 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
-        ], $column->getStructure());
-    }
-
-    /**
-     * Increments
-     */
-    public function testIncrements(): void
-    {
-        $column = Column::create()->name('column1')->increments();
-        $this->assertEquals([
-            'columnName' => 'column1',
-            'type' => 'integer',
-            'params' => null,
-            'nullable' => false,
-            'default' => null,
-            'unique' => null,
-            'primary' => null,
-            'index' => null,
-            'foreign' => null,
-            'increments' => true,
         ], $column->getStructure());
     }
 
@@ -558,11 +513,37 @@ class ColumnTest extends TestCase
                     'column1',
                 ],
                 'name' => 'ixColumn1',
+                'type' => 'unique',
             ],
             'primary' => null,
             'index' => null,
             'foreign' => null,
-            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * Unique
+     */
+    public function testUniqueSetColumnName(): void
+    {
+        $column = Column::create()->unique('ixColumn1')->name('column1');
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unique' => [
+                'tableName' => null,
+                'columns' => [
+                    'column1',
+                ],
+                'name' => 'ixColumn1',
+                'type' => 'unique',
+            ],
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
         ], $column->getStructure());
     }
 
@@ -582,10 +563,11 @@ class ColumnTest extends TestCase
             'primary' => [
                 'tableName' => null,
                 'columns' => [],
+                'type' => 'primary',
+                'increments' => true,
             ],
             'index' => null,
             'foreign' => null,
-            'increments' => false,
         ], $column->getStructure());
     }
 
@@ -609,9 +591,35 @@ class ColumnTest extends TestCase
                     'column1',
                 ],
                 'name' => 'ixColumn1',
+                'type' => 'index',
             ],
             'foreign' => null,
-            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * Index
+     */
+    public function testIndexSetColumnName(): void
+    {
+        $column = Column::create()->index('ixColumn1')->name('column1');
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unique' => null,
+            'primary' => null,
+            'index' => [
+                'tableName' => null,
+                'columns' => [
+                    'column1',
+                ],
+                'name' => 'ixColumn1',
+                'type' => 'index',
+            ],
+            'foreign' => null,
         ], $column->getStructure());
     }
 
@@ -638,11 +646,47 @@ class ColumnTest extends TestCase
                 'columns' => [
                     'column1',
                 ],
-                'references' => 'column2',
+                'references' => [
+                    'column2',
+                ],
                 'onDelete' => 'CASCADE',
                 'onUpdate' => 'CASCADE',
+                'type' => 'foreign',
             ],
-            'increments' => false,
+        ], $column->getStructure());
+    }
+
+    /**
+     * Foreign
+     */
+    public function testForeignSetColumnName(): void
+    {
+        $column = Column::create()
+            ->foreign('tableName2', 'column2', 'CASCADE', 'CASCADE', 'ixColumn1')
+            ->name('column1');
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => [
+                'tableName' => null,
+                'on' => 'tableName2',
+                'name' => 'ixColumn1',
+                'columns' => [
+                    'column1',
+                ],
+                'references' => [
+                    'column2',
+                ],
+                'onDelete' => 'CASCADE',
+                'onUpdate' => 'CASCADE',
+                'type' => 'foreign',
+            ],
         ], $column->getStructure());
     }
 }

@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Fi1a\DB\Queries\Indexes;
+namespace Fi1a\DB\Queries;
 
 /**
- * Внешний ключ
+ * Добавление индекса
  */
-interface ForeignIndexInterface extends IndexInterface, NamedIndexInterface
+interface AddForeignIndexInterface extends ActionIndexInterface
 {
-    public const CASCADE = 'CASCADE';
-
-    public const SET_NULL = 'SET NULL';
-
-    public const RESTRICT = 'RESTRICT';
-
-    public const SET_DEFAULT = 'SET DEFAULT';
+    /**
+     * Название индекса
+     *
+     * @return $this
+     */
+    public function name(string $name);
 
     /**
      * Название колонок на которые ссылается внешний ключ
@@ -53,11 +52,4 @@ interface ForeignIndexInterface extends IndexInterface, NamedIndexInterface
      * @return $this
      */
     public function onUpdate(string $action);
-
-    /**
-     * Название индекса
-     *
-     * @return $this
-     */
-    public function name(string $name);
 }
