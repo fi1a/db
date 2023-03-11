@@ -10,37 +10,37 @@ namespace Fi1a\DB\Queries;
 interface DropIndexInterface extends ActionInterface
 {
     /**
-     * Название индекса
+     * Название таблицы
      *
      * @return $this
      */
-    public function name(string $indexName);
+    public function table(string $tableName);
 
     /**
-     * Добавить уникальный ключ
+     * Удалить уникальный ключ
      *
      * @return $this
      */
-    public function unique();
+    public function unique(string $indexName);
 
     /**
-     * Добавить первичный ключ
+     * Удалить первичный ключ
      *
      * @return $this
      */
     public function primary();
 
     /**
-     * Добавить индекс
+     * Удалить индекс
      *
      * @return $this
      */
-    public function index();
+    public function index(string $indexName);
 
     /**
-     * Добавить внешний ключ
+     * Удалить внешний ключ
      *
      * @return $this
      */
-    public function foreign();
+    public function foreign(string $indexName);
 }

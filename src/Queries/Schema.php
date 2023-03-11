@@ -45,10 +45,9 @@ class Schema implements SchemaInterface
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function dropIndex(): DropIndexInterface
     {
-        // TODO: Implement dropIndex() method.
+        return new DropIndex();
     }
 }
