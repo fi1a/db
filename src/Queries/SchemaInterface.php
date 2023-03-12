@@ -25,6 +25,11 @@ interface SchemaInterface
     public function drop(): DropTableInterface;
 
     /**
+     * Переименование таблицы
+     */
+    public function rename(): RenameTableInterface;
+
+    /**
      * Добавление индекса
      */
     public function addIndex(): AddIndexInterface;
