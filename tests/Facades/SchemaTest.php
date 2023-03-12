@@ -10,6 +10,7 @@ use Fi1a\DB\Queries\AlterTableInterface;
 use Fi1a\DB\Queries\CreateTableInterface;
 use Fi1a\DB\Queries\DropIndexInterface;
 use Fi1a\DB\Queries\DropTableInterface;
+use Fi1a\DB\Queries\RenameTableInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -55,5 +56,13 @@ class SchemaTest extends TestCase
     public function testFacadeAlter(): void
     {
         $this->assertInstanceOf(AlterTableInterface::class, Schema::alter());
+    }
+
+    /**
+     * Запросы переименования таблицы
+     */
+    public function testFacadeRename(): void
+    {
+        $this->assertInstanceOf(RenameTableInterface::class, Schema::rename());
     }
 }

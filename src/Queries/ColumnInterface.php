@@ -21,7 +21,7 @@ interface ColumnInterface
      *
      * @return $this
      */
-    public function rename(?string $columnName);
+    public function rename(string $columnName);
 
     /**
      * BIGINT

@@ -90,7 +90,7 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function rename(?string $columnName)
+    public function rename(string $columnName)
     {
         $this->rename = $columnName;
 

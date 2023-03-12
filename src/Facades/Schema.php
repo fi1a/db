@@ -9,6 +9,7 @@ use Fi1a\DB\Queries\AlterTableInterface;
 use Fi1a\DB\Queries\CreateTableInterface;
 use Fi1a\DB\Queries\DropIndexInterface;
 use Fi1a\DB\Queries\DropTableInterface;
+use Fi1a\DB\Queries\RenameTableInterface;
 use Fi1a\DB\Queries\SchemaInterface;
 use Fi1a\Facade\AbstractFacade;
 
@@ -18,6 +19,7 @@ use Fi1a\Facade\AbstractFacade;
  * @method static AlterTableInterface alter()
  * @method static CreateTableInterface create()
  * @method static DropTableInterface drop()
+ * @method static RenameTableInterface rename()
  * @method static AddIndexInterface addIndex()
  * @method static DropIndexInterface dropIndex()
  */

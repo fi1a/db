@@ -37,6 +37,14 @@ class Schema implements SchemaInterface
     /**
      * @inheritDoc
      */
+    public function rename(): RenameTableInterface
+    {
+        return new RenameTable();
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function addIndex(): AddIndexInterface
     {
         return new AddIndex();
