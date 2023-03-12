@@ -6,6 +6,7 @@ namespace Fi1a\Unit\DB\Facades;
 
 use Fi1a\DB\Facades\Schema;
 use Fi1a\DB\Queries\AddIndexInterface;
+use Fi1a\DB\Queries\AlterTableInterface;
 use Fi1a\DB\Queries\CreateTableInterface;
 use Fi1a\DB\Queries\DropIndexInterface;
 use Fi1a\DB\Queries\DropTableInterface;
@@ -46,5 +47,13 @@ class SchemaTest extends TestCase
     public function testFacadeDropIndex(): void
     {
         $this->assertInstanceOf(DropIndexInterface::class, Schema::dropIndex());
+    }
+
+    /**
+     * Запросы изменения таблицы
+     */
+    public function testFacadeAlter(): void
+    {
+        $this->assertInstanceOf(AlterTableInterface::class, Schema::alter());
     }
 }

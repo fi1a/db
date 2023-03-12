@@ -7,9 +7,10 @@ namespace Fi1a\DB\Queries;
 /**
  * Удаление таблицы
  */
-class DropTable implements DropTableInterface
+class DropTable implements DropTableInterface, ExecutableInterface
 {
     use TableNameActionTrait;
+    use ExecutableTrait;
 
     public const TYPE = 'dropTable';
 

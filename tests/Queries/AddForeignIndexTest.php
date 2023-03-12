@@ -19,9 +19,40 @@ class AddForeignIndexTest extends TestCase
 
         $query->table('tableName')
             ->columns(['column1'])
-            ->column('column1')
             ->on('foreignTableName')
             ->references(['column1'])
+            ->name('ixColumn1')
+            ->onDelete(ForeignIndexInterface::CASCADE)
+            ->onUpdate(ForeignIndexInterface::CASCADE);
+
+        $this->assertEquals(
+            [
+                'type' => 'addIndex',
+                'index' => [
+                    'type' => 'foreign',
+                    'tableName' => 'tableName',
+                    'columns' => ['column1'],
+                    'name' => 'ixColumn1',
+                    'on' => 'foreignTableName',
+                    'references' => ['column1'],
+                    'onDelete' => ForeignIndexInterface::CASCADE,
+                    'onUpdate' => ForeignIndexInterface::CASCADE,
+                ],
+            ],
+            $query->getStructure()
+        );
+    }
+
+    /**
+     * Возвращает структуру запроса
+     */
+    public function testGetStructureReference(): void
+    {
+        $query = new AddForeignIndex();
+
+        $query->table('tableName')
+            ->column('column1')
+            ->on('foreignTableName')
             ->reference('column1')
             ->name('ixColumn1')
             ->onDelete(ForeignIndexInterface::CASCADE)

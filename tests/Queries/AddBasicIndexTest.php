@@ -21,6 +21,30 @@ class AddBasicIndexTest extends TestCase
 
         $query->table('tableName')
             ->columns(['column1'])
+            ->name('ixColumn1');
+
+        $this->assertEquals(
+            [
+                'type' => 'addIndex',
+                'index' => [
+                    'type' => 'index',
+                    'tableName' => 'tableName',
+                    'columns' => ['column1'],
+                    'name' => 'ixColumn1',
+                ],
+            ],
+            $query->getStructure()
+        );
+    }
+
+    /**
+     * Возвращает структуру запроса
+     */
+    public function testGetStructureSetColumn(): void
+    {
+        $query = new AddBasicIndex();
+
+        $query->table('tableName')
             ->column('column1')
             ->name('ixColumn1');
 

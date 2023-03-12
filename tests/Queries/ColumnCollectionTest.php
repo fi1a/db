@@ -33,6 +33,7 @@ class ColumnCollectionTest extends TestCase
                 'primary' => null,
                 'index' => null,
                 'foreign' => null,
+                'rename' => null,
             ],
             [
                 'columnName' => 'column2',
@@ -44,6 +45,7 @@ class ColumnCollectionTest extends TestCase
                 'primary' => null,
                 'index' => null,
                 'foreign' => null,
+                'rename' => null,
             ],
         ], $collection->getStructure());
     }

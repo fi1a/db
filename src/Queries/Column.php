@@ -24,6 +24,11 @@ class Column implements ColumnInterface
     protected $columnName;
 
     /**
+     * @var string|null
+     */
+    protected $rename;
+
+    /**
      * @var string
      */
     protected $type = 'integer';
@@ -66,13 +71,6 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    protected function __construct()
-    {
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function name(string $columnName)
     {
         $this->columnName = $columnName;
@@ -85,6 +83,16 @@ class Column implements ColumnInterface
         if ($this->foreign) {
             $this->foreign->column($columnName);
         }
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rename(?string $columnName)
+    {
+        $this->rename = $columnName;
 
         return $this;
     }
@@ -409,6 +417,7 @@ class Column implements ColumnInterface
             'primary' => $this->primary ? $this->primary->getStructure() : null,
             'index' => $this->index ? $this->index->getStructure() : null,
             'foreign' => $this->foreign ? $this->foreign->getStructure() : null,
+            'rename' => $this->rename,
         ];
     }
 

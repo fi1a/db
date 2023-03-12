@@ -11,8 +11,10 @@ use Fi1a\DB\Queries\Indexes\IndexInterface;
  *
  * @template T of IndexInterface
  */
-abstract class ActionIndex implements ActionIndexInterface
+abstract class ActionIndex implements ActionIndexInterface, ExecutableInterface
 {
+    use ExecutableTrait;
+
     public const TYPE = 'addIndex';
 
     /**

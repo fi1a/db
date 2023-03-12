@@ -17,6 +17,13 @@ interface ColumnInterface
     public function name(string $columnName);
 
     /**
+     * Переименовать колонку
+     *
+     * @return $this
+     */
+    public function rename(?string $columnName);
+
+    /**
      * BIGINT
      *
      * @return $this

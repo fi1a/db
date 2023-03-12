@@ -28,6 +28,27 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
+        ], $column->getStructure());
+    }
+
+    /**
+     * Название колонки
+     */
+    public function testRename(): void
+    {
+        $column = Column::create()->name('column1')->rename('newColumnName');
+        $this->assertEquals([
+            'columnName' => 'column1',
+            'type' => 'integer',
+            'params' => null,
+            'nullable' => false,
+            'default' => null,
+            'unique' => null,
+            'primary' => null,
+            'index' => null,
+            'foreign' => null,
+            'rename' => 'newColumnName',
         ], $column->getStructure());
     }
 
@@ -47,6 +68,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -66,6 +88,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -85,6 +108,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -104,6 +128,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -123,6 +148,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -142,6 +168,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -161,6 +188,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -184,6 +212,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -207,6 +236,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -226,6 +256,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -245,6 +276,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -264,6 +296,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -283,6 +316,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -302,6 +336,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -321,6 +356,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -340,6 +376,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -359,6 +396,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -378,6 +416,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -397,6 +436,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -416,6 +456,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -435,6 +476,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -454,6 +496,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -473,6 +516,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -492,6 +536,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -518,6 +563,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -544,6 +590,7 @@ class ColumnTest extends TestCase
             'primary' => null,
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -568,6 +615,7 @@ class ColumnTest extends TestCase
             ],
             'index' => null,
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -594,6 +642,7 @@ class ColumnTest extends TestCase
                 'type' => 'index',
             ],
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -620,6 +669,7 @@ class ColumnTest extends TestCase
                 'type' => 'index',
             ],
             'foreign' => null,
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -653,6 +703,7 @@ class ColumnTest extends TestCase
                 'onUpdate' => 'CASCADE',
                 'type' => 'foreign',
             ],
+            'rename' => null,
         ], $column->getStructure());
     }
 
@@ -687,6 +738,7 @@ class ColumnTest extends TestCase
                 'onUpdate' => 'CASCADE',
                 'type' => 'foreign',
             ],
+            'rename' => null,
         ], $column->getStructure());
     }
 }
