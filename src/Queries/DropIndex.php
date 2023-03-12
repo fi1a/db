@@ -7,8 +7,10 @@ namespace Fi1a\DB\Queries;
 /**
  * Удаление индекса
  */
-class DropIndex implements DropIndexInterface
+class DropIndex implements DropIndexInterface, ExecutableInterface
 {
+    use ExecutableTrait;
+
     public const TYPE = 'dropIndex';
 
     /**

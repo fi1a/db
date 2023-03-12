@@ -4,30 +4,34 @@ declare(strict_types=1);
 
 namespace Fi1a\Unit\DB\Queries;
 
+use Fi1a\DB\Queries\AlterTable;
 use Fi1a\DB\Queries\Column;
-use Fi1a\DB\Queries\CreateTable;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Создание таблицы
+ * Изменение таблицы
  */
-class CreateTableTest extends TestCase
+class AlterTableTest extends TestCase
 {
     /**
-     * Возвращает структуру запроса
+     * Изменение таблицы
      */
     public function testGetStructure(): void
     {
-        $query = new CreateTable();
+        $query = new AlterTable();
+
         $query->name('tableName')
-            ->ifNotExists()
-            ->column(Column::create()->name('column1'))
-            ->column(Column::create()->name('column2'));
+            ->dropColumn('dropColumn')
+            ->addColumn(Column::create()->name('column1'))
+            ->changeColumn(Column::create()
+                ->name('column2')
+                ->rename('newColumnName'));
+
         $this->assertEquals([
-            'type' => 'createTable',
+            'type' => 'alterTable',
             'tableName' => 'tableName',
-            'ifNotExists' => true,
-            'columns' => [
+            'dropColumns' => ['dropColumn'],
+            'addColumns' => [
                 [
                     'columnName' => 'column1',
                     'type' => 'integer',
@@ -40,6 +44,8 @@ class CreateTableTest extends TestCase
                     'foreign' => null,
                     'rename' => null,
                 ],
+            ],
+            'changeColumns' => [
                 [
                     'columnName' => 'column2',
                     'type' => 'integer',
@@ -50,7 +56,7 @@ class CreateTableTest extends TestCase
                     'primary' => null,
                     'index' => null,
                     'foreign' => null,
-                    'rename' => null,
+                    'rename' => 'newColumnName',
                 ],
             ],
         ], $query->getStructure());

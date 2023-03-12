@@ -57,12 +57,6 @@ class ForeignIndex extends NamedIndex implements ForeignIndexInterface
      */
     public function reference(string $column)
     {
-        foreach ($this->references as $existingColumn) {
-            if (mb_strtolower($existingColumn) === mb_strtolower($column)) {
-                return $this;
-            }
-        }
-
         $this->references[] = $column;
 
         return $this;

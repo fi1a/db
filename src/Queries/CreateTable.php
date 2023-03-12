@@ -42,6 +42,7 @@ class CreateTable implements CreateTableInterface, ExecutableInterface
      */
     public function column(ColumnInterface $column)
     {
+        $column->rename(null);
         $this->columns[] = $column;
 
         return $this;

@@ -11,11 +11,10 @@ class Schema implements SchemaInterface
 {
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function alter(): AlterTableInterface
     {
-        // TODO: Implement alter() method.
+        return new AlterTable();
     }
 
     /**

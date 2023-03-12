@@ -14,7 +14,7 @@ interface AlterTableInterface extends ActionInterface, TableNameActionInterface
      *
      * @return $this
      */
-    public function dropColumn(string $column);
+    public function dropColumn(string ...$columnNames);
 
     /**
      * Добавить колонку

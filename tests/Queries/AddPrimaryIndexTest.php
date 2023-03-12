@@ -21,7 +21,6 @@ class AddPrimaryIndexTest extends TestCase
 
         $query->table('tableName')
             ->columns(['column1'])
-            ->column('column1')
             ->increments();
 
         $this->assertEquals(
