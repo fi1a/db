@@ -57,7 +57,9 @@ class ForeignIndex extends NamedIndex implements ForeignIndexInterface
      */
     public function reference(string $column)
     {
-        $this->references[] = $column;
+        if (!in_array($column, $this->references)) {
+            $this->references[] = $column;
+        }
 
         return $this;
     }

@@ -24,7 +24,9 @@ abstract class Index implements IndexInterface
      */
     public function column(string $column)
     {
-        $this->columns[] = $column;
+        if (!in_array($column, $this->columns)) {
+            $this->columns[] = $column;
+        }
 
         return $this;
     }

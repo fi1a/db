@@ -48,7 +48,7 @@ class AlterTable implements AlterTableInterface, ExecutableInterface
      */
     public function dropColumn(string ...$columnNames)
     {
-        $this->dropColumns = array_merge($this->dropColumns, $columnNames);
+        $this->dropColumns = array_unique(array_merge($this->dropColumns, $columnNames));
 
         return $this;
     }

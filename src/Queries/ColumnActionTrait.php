@@ -17,7 +17,7 @@ trait ColumnActionTrait
     /**
      * @inheritDoc
      */
-    public function column(ColumnInterface $column)
+    public function column(ColumnTypeInterface $column)
     {
         $this->columns[] = $column;
 
