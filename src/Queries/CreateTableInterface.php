@@ -7,15 +7,8 @@ namespace Fi1a\DB\Queries;
 /**
  * Создание таблицы
  */
-interface CreateTableInterface extends ActionInterface, TableNameActionInterface
+interface CreateTableInterface extends ActionInterface, TableNameActionInterface, ColumnActionInterface
 {
-    /**
-     * Добавить колонку
-     *
-     * @return $this
-     */
-    public function column(ColumnInterface $column);
-
     /**
      * Добавляет IF NOT EXISTS к запросу
      *

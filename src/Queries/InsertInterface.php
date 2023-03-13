@@ -7,17 +7,8 @@ namespace Fi1a\DB\Queries;
 /**
  * Запрос на вставку
  */
-interface InsertInterface extends ActionInterface, TableNameActionInterface, ExecutableInterface
+interface InsertInterface extends ActionInterface, TableNameActionInterface, ColumnActionInterface, ExecutableInterface
 {
-    /**
-     * Перечисление колонок
-     *
-     * @param array<array-key, string> $columns
-     *
-     * @return $this
-     */
-    public function columns(array $columns);
-
     /**
      * Значение одной строки
      *
