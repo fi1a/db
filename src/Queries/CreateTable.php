@@ -10,10 +10,14 @@ namespace Fi1a\DB\Queries;
 class CreateTable implements CreateTableInterface, ExecutableInterface
 {
     use TableNameActionTrait;
-    use ColumnActionTrait;
     use ExecutableTrait;
 
     public const TYPE = 'createTable';
+
+    /**
+     * @var ColumnCollectionInterface
+     */
+    protected $columns;
 
     /**
      * @var bool
@@ -31,6 +35,16 @@ class CreateTable implements CreateTableInterface, ExecutableInterface
     public function __construct()
     {
         $this->columns = new ColumnCollection();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function column(ColumnInterface $column)
+    {
+        $this->columns[] = $column;
+
+        return $this;
     }
 
     /**

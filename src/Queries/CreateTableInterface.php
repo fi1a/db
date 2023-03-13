@@ -7,7 +7,7 @@ namespace Fi1a\DB\Queries;
 /**
  * Создание таблицы
  */
-interface CreateTableInterface extends ActionInterface, TableNameActionInterface, ColumnActionInterface
+interface CreateTableInterface extends ActionInterface, TableNameActionInterface
 {
     /**
      * Добавляет IF NOT EXISTS к запросу
@@ -15,4 +15,11 @@ interface CreateTableInterface extends ActionInterface, TableNameActionInterface
      * @return $this
      */
     public function ifNotExists();
+
+    /**
+     * Добавить колонку
+     *
+     * @return $this
+     */
+    public function column(ColumnInterface $column);
 }

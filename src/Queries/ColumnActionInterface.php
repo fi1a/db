@@ -12,7 +12,9 @@ interface ColumnActionInterface
     /**
      * Добавить колонку
      *
+     * @param ColumnTypeInterface|string $column
+     *
      * @return $this
      */
-    public function column(ColumnTypeInterface $column);
+    public function column($column);
 }
