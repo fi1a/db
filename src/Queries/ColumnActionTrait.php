@@ -10,15 +10,22 @@ namespace Fi1a\DB\Queries;
 trait ColumnActionTrait
 {
     /**
-     * @var ColumnCollectionInterface
+     * @var ColumnTypeCollectionInterface
      */
     protected $columns;
 
     /**
-     * @inheritDoc
+     * Добавить колонку
+     *
+     * @param string|ColumnTypeInterface $column
+     *
+     * @return $this
      */
-    public function column(ColumnTypeInterface $column)
+    public function column($column)
     {
+        if (is_string($column)) {
+            $column = ColumnType::create()->name($column)->text();
+        }
         $this->columns[] = $column;
 
         return $this;

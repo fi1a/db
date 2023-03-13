@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Fi1a\Unit\DB\Queries;
 
-use Fi1a\DB\Queries\Column;
+use Fi1a\DB\Queries\ColumnType;
 use Fi1a\DB\Queries\Insert;
 use PHPUnit\Framework\TestCase;
 
@@ -21,8 +21,8 @@ class InsertTest extends TestCase
         $query = new Insert();
 
         $query->name('tableName')
-            ->column(Column::create()->integer()->name('column1'))
-            ->column(Column::create()->integer()->name('column2'))
+            ->column(ColumnType::create()->integer()->name('column1'))
+            ->column(ColumnType::create()->integer()->name('column2'))
             ->rows([['column1' => 1, 'column2' => 2], ['column1' => 3, 'column2' => 4]]);
 
         $this->assertEquals([
@@ -35,13 +35,6 @@ class InsertTest extends TestCase
                     'params' => [
                         'unsigned' => false,
                     ],
-                    'nullable' => false,
-                    'default' => null,
-                    'unique' => null,
-                    'primary' => null,
-                    'index' => null,
-                    'foreign' => null,
-                    'rename' => null,
                 ],
                 [
                     'columnName' => 'column2',
@@ -49,16 +42,34 @@ class InsertTest extends TestCase
                     'params' => [
                         'unsigned' => false,
                     ],
-                    'nullable' => false,
-                    'default' => null,
-                    'unique' => null,
-                    'primary' => null,
-                    'index' => null,
-                    'foreign' => null,
-                    'rename' => null,
                 ],
             ],
             'rows' => [['column1' => 1, 'column2' => 2], ['column1' => 3, 'column2' => 4]],
+        ], $query->getStructure());
+    }
+
+    /**
+     * Возвращает структуру запроса
+     */
+    public function testGetStructureWithDefaultType(): void
+    {
+        $query = new Insert();
+
+        $query->name('tableName')
+            ->column('column1')
+            ->rows([['column1' => 'foo'], ['column1' => 'bar']]);
+
+        $this->assertEquals([
+            'type' => 'insert',
+            'tableName' => 'tableName',
+            'columns' => [
+                [
+                    'columnName' => 'column1',
+                    'type' => 'text',
+                    'params' => null,
+                ],
+            ],
+            'rows' => [['column1' => 'foo'], ['column1' => 'bar']],
         ], $query->getStructure());
     }
 }

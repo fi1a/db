@@ -16,7 +16,7 @@ class Insert implements InsertInterface
     public const TYPE = 'insert';
 
     /**
-     * @var ColumnCollectionInterface
+     * @var ColumnTypeCollectionInterface
      */
     protected $columns;
 
@@ -27,7 +27,7 @@ class Insert implements InsertInterface
 
     public function __construct()
     {
-        $this->columns = new ColumnCollection();
+        $this->columns = new ColumnTypeCollection();
     }
 
     /**
