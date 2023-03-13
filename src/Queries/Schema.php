@@ -27,7 +27,6 @@ class Schema implements SchemaInterface
 
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function drop(): DropTableInterface
     {

@@ -14,5 +14,5 @@ interface ColumnActionInterface
      *
      * @return $this
      */
-    public function column(ColumnInterface $column);
+    public function column(ColumnTypeInterface $column);
 }
