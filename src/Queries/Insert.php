@@ -5,28 +5,25 @@ declare(strict_types=1);
 namespace Fi1a\DB\Queries;
 
 /**
- * Создание таблицы
+ * Запрос на вставку
  */
-class CreateTable implements CreateTableInterface, ExecutableInterface
+class Insert implements InsertInterface
 {
     use TableNameActionTrait;
     use ColumnActionTrait;
     use ExecutableTrait;
 
-    public const TYPE = 'createTable';
+    public const TYPE = 'insert';
 
     /**
-     * @var bool
+     * @var ColumnCollectionInterface
      */
-    protected $ifNotExists = false;
+    protected $columns;
 
     /**
-     * @inheritDoc
+     * @var mixed[][]
      */
-    public function getType(): string
-    {
-        return self::TYPE;
-    }
+    protected $rows = [];
 
     public function __construct()
     {
@@ -36,9 +33,30 @@ class CreateTable implements CreateTableInterface, ExecutableInterface
     /**
      * @inheritDoc
      */
-    public function ifNotExists()
+    public function getType(): string
     {
-        $this->ifNotExists = true;
+        return self::TYPE;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function row(array $row)
+    {
+        $this->rows[] = $row;
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rows(array $rows)
+    {
+        $this->rows = [];
+        foreach ($rows as $row) {
+            $this->row($row);
+        }
 
         return $this;
     }
@@ -51,8 +69,8 @@ class CreateTable implements CreateTableInterface, ExecutableInterface
         return [
             'type' => $this->getType(),
             'tableName' => $this->tableName,
-            'ifNotExists' => $this->ifNotExists,
             'columns' => $this->columns->getStructure(),
+            'rows' => $this->rows,
         ];
     }
 }
