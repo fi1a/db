@@ -14,5 +14,5 @@ interface FromActionInterface
      *
      * @return $this
      */
-    public function from(string $table, string $alias = '');
+    public function from(string $table, ?string $alias = null);
 }

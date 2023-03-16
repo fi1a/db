@@ -48,7 +48,7 @@ interface DBInterface
      *
      * @param ActionInterface|array<string, mixed> $query
      *
-     * @return array<array-key, array<string, string>>
+     * @return array<array-key, array<string, mixed>>
      */
     public function query($query): array;
 }

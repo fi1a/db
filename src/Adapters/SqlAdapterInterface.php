@@ -21,7 +21,7 @@ interface SqlAdapterInterface extends AdapterInterface
     /**
      * Выполняет выражение SQL и возвращает результат
      *
-     * @return array<array-key, array<string, string>>
+     * @return array<array-key, array<string, mixed>>
      */
     public function querySql(string $sql): array;
 

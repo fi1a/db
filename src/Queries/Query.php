@@ -11,11 +11,10 @@ class Query implements QueryInterface
 {
     /**
      * @inheritDoc
-     * @psalm-suppress InvalidReturnType
      */
     public function select(): SelectInterface
     {
-        // TODO: Implement select() method.
+        return new Select();
     }
 
     /**

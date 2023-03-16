@@ -21,18 +21,18 @@ interface SelectInterface extends
     /**
      * Добавить колонку к выбору
      *
-     * @param string|Expression $column
+     * @param string|Expression|ColumnTypeInterface $column
      *
      * @return $this
      */
-    public function addColumn($column, ?string $alias = null);
+    public function column($column, ?string $alias = null);
 
     /**
-     * @param array<array-key, string> $columns
+     * @param array<string|array-key, string> $columns
      *
      * @return $this
      */
-    public function setColumns(array $columns = ['*']);
+    public function columns(array $columns = ['*']);
 
     /**
      * Добавить HAVING
@@ -92,7 +92,7 @@ interface SelectInterface extends
      *
      * @return $this
      */
-    public function offset(int $offset);
+    public function offset(?int $offset);
 
     /**
      * Left Join
