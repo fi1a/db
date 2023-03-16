@@ -9,17 +9,12 @@ use Fi1a\DB\Queries\Expressions\ExpressionInterface;
 /**
  * Условия
  */
-interface WhereActionInterface
+trait WhereTrait
 {
     /**
-     * Добавить логику "И"
-     *
-     * @param string|ExpressionInterface|WhereInterface $column
-     * @param mixed $value
-     *
-     * @return $this
+     * @var WhereInterface[]
      */
-    public function where($column, ?string $operation = null, $value = null);
+    protected $chain = [];
 
     /**
      * Добавить логику "И"
@@ -29,7 +24,25 @@ interface WhereActionInterface
      *
      * @return $this
      */
-    public function andWhere($column, ?string $operation = null, $value = null);
+    public function where($column, ?string $operation = null, $value = null)
+    {
+        return $this->andWhere($column, $operation, $value);
+    }
+
+    /**
+     * Добавить логику "И"
+     *
+     * @param string|ExpressionInterface|WhereInterface $column
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    public function andWhere($column, ?string $operation = null, $value = null)
+    {
+        $this->chain[] = AndWhere::create($column, $operation, $value);
+
+        return $this;
+    }
 
     /**
      * Добавить логику "ИЛИ"
@@ -39,5 +52,10 @@ interface WhereActionInterface
      *
      * @return $this
      */
-    public function orWhere($column, ?string $operation = null, $value = null);
+    public function orWhere($column, ?string $operation = null, $value = null)
+    {
+        $this->chain[] = OrWhere::create($column, $operation, $value);
+
+        return $this;
+    }
 }
