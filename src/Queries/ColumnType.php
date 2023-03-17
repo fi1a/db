@@ -7,13 +7,8 @@ namespace Fi1a\DB\Queries;
 /**
  * Колонка
  */
-class ColumnType implements ColumnTypeInterface
+class ColumnType extends ColumnName implements ColumnTypeInterface
 {
-    /**
-     * @var string|null
-     */
-    protected $columnName;
-
     /**
      * @var string
      */
@@ -23,16 +18,6 @@ class ColumnType implements ColumnTypeInterface
      * @var array<string, mixed>|null
      */
     protected $typeParams;
-
-    /**
-     * @inheritDoc
-     */
-    public function name(string $columnName)
-    {
-        $this->columnName = $columnName;
-
-        return $this;
-    }
 
     /**
      * @inheritDoc
@@ -249,20 +234,12 @@ class ColumnType implements ColumnTypeInterface
      */
     public function getStructure(): array
     {
-        return [
-            'columnName' => $this->columnName,
+        $structure = parent::getStructure();
+
+        return array_merge($structure, [
             'type' => $this->type,
             'params' => $this->typeParams,
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     * @psalm-suppress UnsafeInstantiation
-     */
-    public static function create()
-    {
-        return new static();
+        ]);
     }
 
     /**

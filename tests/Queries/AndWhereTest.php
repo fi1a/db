@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Fi1a\Unit\DB\Queries;
 
 use Fi1a\DB\Queries\AndWhere;
+use Fi1a\DB\Queries\ColumnType;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -79,6 +80,59 @@ class AndWhereTest extends TestCase
             'operation' => null,
             'value' => null,
             'where' => [],
+        ], $where->getStructure());
+    }
+
+    /**
+     * Структура
+     */
+    public function testStructureWithColumnName(): void
+    {
+        $where = AndWhere::create(ColumnType::create()->name('column1')->text(), '=', 'foo')
+            ->andWhere(ColumnType::create()->name('column2')->text(), '=', 'bar')
+            ->andWhere(
+                ColumnType::create()->name('column3')->text(),
+                '=',
+                ColumnType::create()->name('column3')->text()
+            );
+
+        $this->assertEquals([
+            'logic' => 'and',
+            'column' => [
+                'columnName' => 'column1',
+                'type' => 'text',
+                'params' => null,
+            ],
+            'operation' => '=',
+            'value' => 'foo',
+            'where' => [
+                [
+                    'logic' => 'and',
+                    'column' => [
+                        'columnName' => 'column2',
+                        'type' => 'text',
+                        'params' => null,
+                    ],
+                    'operation' => '=',
+                    'value' => 'bar',
+                    'where' => [],
+                ],
+                [
+                    'logic' => 'and',
+                    'column' => [
+                        'columnName' => 'column3',
+                        'type' => 'text',
+                        'params' => null,
+                    ],
+                    'operation' => '=',
+                    'value' => [
+                        'columnName' => 'column3',
+                        'type' => 'text',
+                        'params' => null,
+                    ],
+                    'where' => [],
+                ],
+            ],
         ], $where->getStructure());
     }
 }

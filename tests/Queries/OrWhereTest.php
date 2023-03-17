@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fi1a\Unit\DB\Queries;
 
+use Fi1a\DB\Queries\ColumnType;
 use Fi1a\DB\Queries\OrWhere;
 use PHPUnit\Framework\TestCase;
 
@@ -79,6 +80,59 @@ class OrWhereTest extends TestCase
             'operation' => null,
             'value' => null,
             'where' => [],
+        ], $where->getStructure());
+    }
+
+    /**
+     * Структура
+     */
+    public function testStructureWithColumnName(): void
+    {
+        $where = OrWhere::create(ColumnType::create()->name('column1')->text(), '=', 'foo')
+            ->orWhere(ColumnType::create()->name('column2')->text(), '=', 'bar')
+            ->orWhere(
+                ColumnType::create()->name('column3')->text(),
+                '=',
+                ColumnType::create()->name('column3')->text()
+            );
+
+        $this->assertEquals([
+            'logic' => 'or',
+            'column' => [
+                'columnName' => 'column1',
+                'type' => 'text',
+                'params' => null,
+            ],
+            'operation' => '=',
+            'value' => 'foo',
+            'where' => [
+                [
+                    'logic' => 'or',
+                    'column' => [
+                        'columnName' => 'column2',
+                        'type' => 'text',
+                        'params' => null,
+                    ],
+                    'operation' => '=',
+                    'value' => 'bar',
+                    'where' => [],
+                ],
+                [
+                    'logic' => 'or',
+                    'column' => [
+                        'columnName' => 'column3',
+                        'type' => 'text',
+                        'params' => null,
+                    ],
+                    'operation' => '=',
+                    'value' => [
+                        'columnName' => 'column3',
+                        'type' => 'text',
+                        'params' => null,
+                    ],
+                    'where' => [],
+                ],
+            ],
         ], $where->getStructure());
     }
 }

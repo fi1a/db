@@ -14,7 +14,7 @@ interface WhereActionInterface
     /**
      * Добавить логику "И"
      *
-     * @param string|ExpressionInterface|WhereInterface $column
+     * @param string|ExpressionInterface|WhereInterface|ColumnTypeInterface $column
      * @param mixed $value
      *
      * @return $this
@@ -24,7 +24,7 @@ interface WhereActionInterface
     /**
      * Добавить логику "И"
      *
-     * @param string|ExpressionInterface|WhereInterface $column
+     * @param string|ExpressionInterface|WhereInterface|ColumnTypeInterface $column
      * @param mixed $value
      *
      * @return $this
@@ -34,7 +34,7 @@ interface WhereActionInterface
     /**
      * Добавить логику "ИЛИ"
      *
-     * @param string|ExpressionInterface|WhereInterface $column
+     * @param string|ExpressionInterface|WhereInterface|ColumnTypeInterface $column
      * @param mixed $value
      *
      * @return $this

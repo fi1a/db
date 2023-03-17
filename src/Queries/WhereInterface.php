@@ -24,7 +24,7 @@ interface WhereInterface extends WhereActionInterface
     public function getStructure(): array;
 
     /**
-     * @param string|ExpressionInterface|WhereInterface $column
+     * @param string|ExpressionInterface|WhereInterface|ColumnTypeInterface $column
      * @param mixed $value
      *
      * @return static
