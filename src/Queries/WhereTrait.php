@@ -19,7 +19,7 @@ trait WhereTrait
     /**
      * Добавить логику "И"
      *
-     * @param string|ExpressionInterface|WhereInterface $column
+     * @param string|ExpressionInterface|WhereInterface|ColumnTypeInterface $column
      * @param mixed $value
      *
      * @return $this
@@ -32,7 +32,7 @@ trait WhereTrait
     /**
      * Добавить логику "И"
      *
-     * @param string|ExpressionInterface|WhereInterface $column
+     * @param string|ExpressionInterface|WhereInterface|ColumnTypeInterface $column
      * @param mixed $value
      *
      * @return $this
@@ -47,7 +47,7 @@ trait WhereTrait
     /**
      * Добавить логику "ИЛИ"
      *
-     * @param string|ExpressionInterface|WhereInterface $column
+     * @param string|ExpressionInterface|WhereInterface|ColumnTypeInterface $column
      * @param mixed $value
      *
      * @return $this

@@ -7,15 +7,8 @@ namespace Fi1a\DB\Queries;
 /**
  * Колонка
  */
-interface ColumnTypeInterface
+interface ColumnTypeInterface extends ColumnNameInterface
 {
-    /**
-     * Название колонки
-     *
-     * @return $this
-     */
-    public function name(string $columnName);
-
     /**
      * BIGINT
      *
@@ -171,9 +164,4 @@ interface ColumnTypeInterface
      * @return array{columnName: (string|null), params: (array<string, mixed>|null), type: string}
      */
     public function getStructure(): array;
-
-    /**
-     * @return static
-     */
-    public static function create();
 }

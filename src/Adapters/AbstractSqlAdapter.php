@@ -24,12 +24,4 @@ abstract class AbstractSqlAdapter extends AbstractAdapter implements SqlAdapterI
     {
         return $this->execSql((string) $this->prepare($query)) !== false;
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function query($query): array
-    {
-        return $this->querySql((string) $this->prepare($query));
-    }
 }

@@ -14,7 +14,7 @@ abstract class AbstractWhere implements WhereInterface
     use WhereTrait;
 
     /**
-     * @var string|ExpressionInterface|WhereInterface
+     * @var string|ExpressionInterface|WhereInterface|ColumnTypeInterface
      */
     protected $column;
 
@@ -29,7 +29,7 @@ abstract class AbstractWhere implements WhereInterface
     protected $value;
 
     /**
-     * @param string|ExpressionInterface|WhereInterface $column
+     * @param string|ExpressionInterface|WhereInterface|ColumnTypeInterface $column
      * @param mixed $value
      */
     protected function __construct($column, ?string $operation = null, $value = null)
@@ -61,11 +61,24 @@ abstract class AbstractWhere implements WhereInterface
             $whereStructure[] = $where->getStructure();
         }
 
+        $column = $this->column;
+        if ($this->column instanceof WhereInterface) {
+            $column = [$this->column->getStructure()];
+        } elseif ($this->column instanceof ColumnNameInterface) {
+            $column = $this->column->getStructure();
+        }
+
+        /** @var mixed $value */
+        $value = $this->value;
+        if ($this->value instanceof ColumnNameInterface) {
+            $value = $this->value->getStructure();
+        }
+
         return [
             'logic' => $this->getType(),
-            'column' => $this->column instanceof WhereInterface ? [$this->column->getStructure()] : $this->column,
+            'column' => $column,
             'operation' => $this->operation,
-            'value' => $this->value,
+            'value' => $value,
             'where' => $whereStructure,
         ];
     }
